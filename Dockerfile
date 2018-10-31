@@ -1,6 +1,6 @@
 FROM alpine:edge
 
-RUN apk --no-cache upgrade && apk add --no-cache "freetype>2.8" "harfbuzz>1.6" udev ttf-freefont chromium
+RUN apk add --no-cache "freetype>2.8" "harfbuzz>1.6" udev ttf-freefont chromium nss
 
 EXPOSE 9222
 
@@ -37,5 +37,7 @@ CMD [ \
   # Expose port 9222 for remote debugging
   "--remote-debugging-port=9222", \
   # Disable fetching safebrowsing lists, likely redundant due to disable-background-networking
-  "--safebrowsing-disable-auto-update" \
+  "--safebrowsing-disable-auto-update", \
+  "--disable-software-rasterizer", \
+  "--disable-dev-shm-usage"
 ]
