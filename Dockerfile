@@ -2,6 +2,9 @@ FROM alpine:edge
 
 RUN apk add --no-cache "freetype>2.8" "harfbuzz>1.6" udev ttf-freefont chromium nss
 
+ENV CHROME_BIN=/usr/bin/chromium-browser \
+    CHROME_PATH=/usr/lib/chromium/
+
 EXPOSE 9222
 
 ENTRYPOINT ["chromium-browser"]
@@ -39,5 +42,5 @@ CMD [ \
   # Disable fetching safebrowsing lists, likely redundant due to disable-background-networking
   "--safebrowsing-disable-auto-update", \
   "--disable-software-rasterizer", \
-  "--disable-dev-shm-usage"
+  "--disable-dev-shm-usage"\
 ]
