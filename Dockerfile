@@ -1,6 +1,6 @@
 FROM alpine:edge
 
-RUN apk --no-cache upgrade && apk add --no-cache chromium
+RUN apk --no-cache upgrade && apk add --no-cache "freetype>2.8" "harfbuzz>1.6" udev ttf-freefont chromium
 
 EXPOSE 9222
 
