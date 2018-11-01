@@ -1,8 +1,9 @@
 FROM alpine:edge
 
-RUN apk add --no-cache "freetype>2.8" "harfbuzz>1.6" udev ttf-freefont chromium nss xvfb bash
-ADD xvfb-chromium /usr/bin/xvfb-chromium
-RUN ln -s /usr/bin/xvfb-chromium /usr/bin/google-chrome
+COPY xvfb-chromium /usr/bin/xvfb-chromium
+RUN apk add --no-cache "freetype>2.8" "harfbuzz>1.6" udev ttf-freefont chromium nss xvfb bash && \
+    ln -s /usr/bin/xvfb-chromium /usr/bin/google-chrome && \
+    chmod +x /usr/bin/xvfb-chromium
 
 EXPOSE 9222
 
