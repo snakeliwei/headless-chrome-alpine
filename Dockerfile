@@ -1,13 +1,13 @@
 FROM alpine:edge
 
-RUN apk add --no-cache "freetype>2.8" "harfbuzz>1.6" udev ttf-freefont chromium nss
-
-ENV CHROME_BIN=/usr/bin/chromium-browser \
-    CHROME_PATH=/usr/lib/chromium/
+RUN apk add --no-cache "freetype>2.8" "harfbuzz>1.6" udev ttf-freefont chromium nss xvfb
+ADD xvfb-chromium /usr/bin/xvfb-chromium
+RUN ln -s /usr/bin/xvfb-chromium /usr/bin/google-chrome
+RUN ln -s /usr/bin/xvfb-chromium /usr/bin/chromium-browser
 
 EXPOSE 9222
 
-ENTRYPOINT ["chromium-browser"]
+ENTRYPOINT ["xvfb-chromium"]
 
 # flags from https://github.com/GoogleChrome/chrome-launcher/blob/master/src/flags.ts
 CMD [ \
