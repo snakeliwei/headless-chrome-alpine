@@ -17,7 +17,7 @@ xvfb=$!
 
 export DISPLAY=:99
 
-chromium $@ &
+chromium "$@" &
 chromium=$!
 
 wait $chromium
