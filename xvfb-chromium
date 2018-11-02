@@ -17,7 +17,7 @@ xvfb=$!
 
 export DISPLAY=:99
 
-chromium --no-sandbox $@ &
+chromium $@ &
 chromium=$!
 
 wait $chromium
